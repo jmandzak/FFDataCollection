@@ -1,4 +1,4 @@
-"POS_RK",POS_TIERS,"PLAYER NAME",TEAM,"FAN PTS","REC_TGT","REC","REC_YDS","REC_TDS","RUSH_ATT","RUSH_YDS","RUSH_TDS"
+"PPR_POS_RK",PPR_POS_TIERS,"PLAYER NAME",TEAM,"PPR_FAN PTS","REC_TGT","REC","REC_YDS","REC_TDS","RUSH_ATT","RUSH_YDS","RUSH_TDS"
 "1",1,"Travis Kelce",KC,"312.76","145","105","1416","11","0","0","0"
 "2",1,"Darren Waller",LV,"278.6","145","107","1196","9","0","0","0"
 "3",1,"George Kittle",SF,"125.1","63","48","634","2","2","17","0"

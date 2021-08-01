@@ -21,3 +21,7 @@ FILE: DEFs
 
 FILE: Ks
 - Same as DEFs
+
+FILE: PPRs
+- Change Fan Pts to PPR FAN PTS
+- Prepend PPR to rank and tier

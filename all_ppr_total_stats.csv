@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","PASS_YDS","PASS_TDS","REC","REC_YDS","REC_TDS","RUSH_ATT","RUSH_YDS","RUSH_TDS"
+"PPR_RK",PPR_TIERS,"PLAYER NAME",TEAM,"PPR_FAN PTS","PASS_YDS","PASS_TDS","REC","REC_YDS","REC_TDS","RUSH_ATT","RUSH_YDS","RUSH_TDS"
 "1",1,"Christian McCaffrey",CAR,"90.3","0","0","17","149","1","59","225","5"
 "2",1,"Dalvin Cook",MIN,"337.8","0","0","44","361","1","312","1557","16"
 "3",1,"Alvin Kamara",NO,"377.8","0","0","83","756","5","187","932","16"
