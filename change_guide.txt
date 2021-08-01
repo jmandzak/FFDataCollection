@@ -1,0 +1,23 @@
+FILE: all_total_stats.csv
+- Change each yards to prefix either PASS, REC, or RUSH
+- Change TDs to PASS, REC, RUSH
+- Change ATT to RUSH_ATT
+
+FILE: Position files
+- Change rank and tier to POS_RANK, POS_TIERS
+
+FILE: QBs
+- Prefix everything with PASS except for interceptions
+- Prefix rushing stats with RUSH
+
+FILE: RBs
+- Prefix each rushing thing with RUSH, catching with REC
+
+FILE: WRs
+- Prefix each catching thing with REC, rushing thing with RUSH
+
+FILE: DEFs
+- Just change rank and tiers
+
+FILE: Ks
+- Same as DEFs
