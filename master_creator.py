@@ -21,12 +21,16 @@ def main():
     # Let's do this by positions
     # First, we'll start with QBs
     qb_avg_df = pd.read_csv('qb_avg_stats.csv')
+    qb_avg_df.set_index('PLAYER NAME', inplace=True)
+
     qb_rank_df = pd.read_csv('qb_rank_stats.csv')
+    qb_rank_df.set_index('PLAYER NAME', inplace=True)
+
     qb_total_df = pd.read_csv('qb_total_stats.csv')
+    qb_total_df.set_index('PLAYER NAME', inplace=True)
 
     qb_df = qb_avg_df.combine(qb_rank_df, arbitrary_func)
     qb_df = qb_df.combine(qb_total_df, arbitrary_func)
-    qb_df.set_index('PLAYER NAME', inplace=True)
     qb_df = qb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     # assign strength of schedule
@@ -51,18 +55,28 @@ def main():
 
     # Now on to RBs
     rb_avg_df = pd.read_csv('rb_avg_stats.csv')
+    rb_avg_df.set_index('PLAYER NAME', inplace=True)
+
     rb_ppr_avg_df = pd.read_csv('rb_ppr_avg_stats.csv')
+    rb_ppr_avg_df.set_index('PLAYER NAME', inplace=True)
+
     rb_ppr_rank_df = pd.read_csv('rb_ppr_rank_stats.csv')
+    rb_ppr_rank_df.set_index('PLAYER NAME', inplace=True)
+
     rb_ppr_total_df = pd.read_csv('rb_ppr_total_stats.csv')
+    rb_ppr_total_df.set_index('PLAYER NAME', inplace=True)
+
     rb_rank_df = pd.read_csv('rb_rank_stats.csv')
+    rb_rank_df.set_index('PLAYER NAME', inplace=True)
+
     rb_total_df = pd.read_csv('rb_total_stats.csv')
+    rb_total_df.set_index('PLAYER NAME', inplace=True)
 
     rb_df = rb_avg_df.combine(rb_ppr_avg_df, arbitrary_func)
     rb_df = rb_df.combine(rb_ppr_rank_df, arbitrary_func)
     rb_df = rb_df.combine(rb_ppr_total_df, arbitrary_func)
     rb_df = rb_df.combine(rb_rank_df, arbitrary_func)
     rb_df = rb_df.combine(rb_total_df, arbitrary_func)
-    rb_df.set_index('PLAYER NAME', inplace=True)
     rb_df = rb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     # assign strength of schedule
@@ -87,18 +101,29 @@ def main():
 
     # Now WRs
     wr_avg_df = pd.read_csv('wr_avg_stats.csv')
+    wr_avg_df.set_index('PLAYER NAME', inplace=True)
+
     wr_ppr_avg_df = pd.read_csv('wr_ppr_avg_stats.csv')
+    wr_ppr_avg_df.set_index('PLAYER NAME', inplace=True)
+
     wr_ppr_rank_df = pd.read_csv('wr_ppr_rank_stats.csv')
+    wr_ppr_rank_df.set_index('PLAYER NAME', inplace=True)
+
     wr_ppr_total_df = pd.read_csv('wr_ppr_total_stats.csv')
+    wr_ppr_total_df.set_index('PLAYER NAME', inplace=True)
+
     wr_rank_df = pd.read_csv('wr_rank_stats.csv')
+    wr_rank_df.set_index('PLAYER NAME', inplace=True)
+
     wr_total_df = pd.read_csv('wr_total_stats.csv')
+    wr_total_df.set_index('PLAYER NAME', inplace=True)
+
 
     wr_df = wr_avg_df.combine(wr_ppr_avg_df, arbitrary_func)
     wr_df = wr_df.combine(wr_ppr_rank_df, arbitrary_func)
     wr_df = wr_df.combine(wr_ppr_total_df, arbitrary_func)
     wr_df = wr_df.combine(wr_rank_df, arbitrary_func)
     wr_df = wr_df.combine(wr_total_df, arbitrary_func)
-    wr_df.set_index('PLAYER NAME', inplace=True)
     wr_df = wr_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     # assign strength of schedule
@@ -123,18 +148,29 @@ def main():
 
     # Now TEs
     te_avg_df = pd.read_csv('te_avg_stats.csv')
+    te_avg_df.set_index('PLAYER NAME', inplace=True)
+
     te_ppr_avg_df = pd.read_csv('te_ppr_avg_stats.csv')
+    te_ppr_avg_df.set_index('PLAYER NAME', inplace=True)
+
     te_ppr_rank_df = pd.read_csv('te_ppr_rank_stats.csv')
+    te_ppr_rank_df.set_index('PLAYER NAME', inplace=True)
+
     te_ppr_total_df = pd.read_csv('te_ppr_total_stats.csv')
+    te_ppr_total_df.set_index('PLAYER NAME', inplace=True)
+
     te_rank_df = pd.read_csv('te_rank_stats.csv')
+    te_rank_df.set_index('PLAYER NAME', inplace=True)
+
     te_total_df = pd.read_csv('te_total_stats.csv')
+    te_total_df.set_index('PLAYER NAME', inplace=True)
+
 
     te_df = te_avg_df.combine(te_ppr_avg_df, arbitrary_func)
     te_df = te_df.combine(te_ppr_rank_df, arbitrary_func)
     te_df = te_df.combine(te_ppr_total_df, arbitrary_func)
     te_df = te_df.combine(te_rank_df, arbitrary_func)
     te_df = te_df.combine(te_total_df, arbitrary_func)
-    te_df.set_index('PLAYER NAME', inplace=True)
     te_df = te_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     # assign strength of schedule
@@ -159,12 +195,17 @@ def main():
 
     # Now DEFs
     def_avg_df = pd.read_csv('def_avg_stats.csv')
+    def_avg_df.set_index('PLAYER NAME', inplace=True)
+
     def_rank_df = pd.read_csv('def_rank_stats.csv')
+    def_rank_df.set_index('PLAYER NAME', inplace=True)
+
     def_total_df = pd.read_csv('def_total_stats.csv')
+    def_total_df.set_index('PLAYER NAME', inplace=True)
+
 
     def_df = def_avg_df.combine(def_rank_df, arbitrary_func)
     def_df = def_df.combine(def_total_df, arbitrary_func)
-    def_df.set_index('PLAYER NAME', inplace=True)
     def_df = def_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     # assign strength of schedule
@@ -189,12 +230,16 @@ def main():
 
     # And finally kickers
     k_avg_df = pd.read_csv('k_avg_stats.csv')
+    k_avg_df.set_index('PLAYER NAME', inplace=True)
+
     k_rank_df = pd.read_csv('k_rank_stats.csv')
+    k_rank_df.set_index('PLAYER NAME', inplace=True)
+
     k_total_df = pd.read_csv('k_total_stats.csv')
+    k_total_df.set_index('PLAYER NAME', inplace=True)
 
     k_df = k_avg_df.combine(k_rank_df, arbitrary_func)
     k_df = k_df.combine(k_total_df, arbitrary_func)
-    k_df.set_index('PLAYER NAME', inplace=True)
     k_df = k_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     # assign strength of schedule
@@ -219,18 +264,29 @@ def main():
 
     # Now we'll do all
     all_avg_df = pd.read_csv('all_avg_stats.csv')
+    all_avg_df.set_index('PLAYER NAME', inplace=True)
+
     all_ppr_avg_df = pd.read_csv('all_ppr_avg_stats.csv')
+    all_ppr_avg_df.set_index('PLAYER NAME', inplace=True)
+    
     all_ppr_rank_df = pd.read_csv('all_ppr_rank_stats.csv')
+    all_ppr_rank_df.set_index('PLAYER NAME', inplace=True)
+    
     all_ppr_total_df = pd.read_csv('all_ppr_total_stats.csv')
+    all_ppr_total_df.set_index('PLAYER NAME', inplace=True)
+    
     all_rank_df = pd.read_csv('all_rank_stats.csv')
+    all_rank_df.set_index('PLAYER NAME', inplace=True)
+    
     all_total_df = pd.read_csv('all_total_stats.csv')
+    all_total_df.set_index('PLAYER NAME', inplace=True)
+    
 
     all_df = all_avg_df.combine(all_ppr_avg_df, arbitrary_func)
     all_df = all_df.combine(all_ppr_rank_df, arbitrary_func)
     all_df = all_df.combine(all_ppr_total_df, arbitrary_func)
     all_df = all_df.combine(all_rank_df, arbitrary_func)
     all_df = all_df.combine(all_total_df, arbitrary_func)
-    all_df.set_index('PLAYER NAME', inplace=True)
     all_df = all_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     all_df = all_df.dropna()
 
