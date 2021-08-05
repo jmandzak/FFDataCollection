@@ -16,7 +16,7 @@ def main():
     player_positions = {}
 
     # function used for combining dataframes
-    arbitrary_func = lambda s1, s2: s1 if s1.isnull().sum() < s2.isnull().sum() else s2
+    arbitrary_func = lambda s1, s2: s1 if s1.isnull().sum() <= s2.isnull().sum() else s2
 
     # Let's do this by positions
     # First, we'll start with QBs
@@ -320,12 +320,14 @@ def main():
     all_df.to_csv('final/all_positions.csv')
 
     # Time for the master sheet
-    master_df = all_df.combine(qb_df, arbitrary_func)
-    master_df = master_df.combine(rb_df, arbitrary_func)
-    master_df = master_df.combine(wr_df, arbitrary_func)
-    master_df = master_df.combine(te_df, arbitrary_func)
-    master_df = master_df.combine(def_df, arbitrary_func)
-    master_df = master_df.combine(k_df, arbitrary_func)
+    master_df = pd.concat([qb_df, rb_df, wr_df, te_df, def_df, k_df], axis=0)
+    master_df = master_df.combine(all_df, arbitrary_func)
+    # master_df = all_df.combine(qb_df, arbitrary_func)
+    # master_df = master_df.combine(rb_df, arbitrary_func)
+    # master_df = master_df.combine(wr_df, arbitrary_func)
+    # master_df = master_df.combine(te_df, arbitrary_func)
+    # master_df = master_df.combine(def_df, arbitrary_func)
+    # master_df = master_df.combine(k_df, arbitrary_func)
     master_df = master_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     master_df.to_csv('final/master_sheet.csv')
 
