@@ -16,7 +16,7 @@ def main():
     player_positions = {}
 
     # function used for combining dataframes
-    arbitrary_func = lambda s1, s2: s1 if s1.any() else s2
+    arbitrary_func = lambda s1, s2: s1 if s1.isnull().sum() < s2.isnull().sum() else s2
 
     # Let's do this by positions
     # First, we'll start with QBs
