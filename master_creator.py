@@ -12,6 +12,11 @@ def main():
     season = season_df.to_dict('index')
     playoff = playoff_df.to_dict('index')
 
+    # grab boom/bust/start
+    all_boom_df = pd.read_csv('all_boom_bust.csv')
+    all_boom_df.set_index('PLAYER NAME', inplace=True)
+    all_boom_bust = all_boom_df.to_dict('index')
+
     # this dict will be used later for adding positions to everyone
     player_positions = {}
 
@@ -33,10 +38,14 @@ def main():
     qb_df = qb_df.combine(qb_total_df, arbitrary_func)
     qb_df = qb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
-    # assign strength of schedule
+    # assign strength of schedule and boom/bust/start
     playoff_sos = []
     season_sos = []
     full_sos = []
+    boom = []
+    bust = []
+    starter = []
+
     for index, row in qb_df.iterrows():
         player_positions[index] = 'QB'
         if row['TEAM'] == 'FA':
@@ -47,10 +56,22 @@ def main():
             playoff_sos.append(playoff[row['TEAM']]['QB'])
             season_sos.append(season[row['TEAM']]['QB'])
             full_sos.append(full[row['TEAM']]['QB'])
+        
+        if index in all_boom_bust:
+            boom.append(all_boom_bust[index]['BOOM'])
+            bust.append(all_boom_bust[index]['BUST'])
+            starter.append(all_boom_bust[index]['STARTER'])
+        else:
+            boom.append(0)
+            bust.append(0)
+            starter.append(0)
     
     qb_df['FULL_SOS'] = full_sos
     qb_df['SEASON_SOS'] = season_sos
     qb_df['PLAYOFF_SOS'] = playoff_sos
+    qb_df['BOOM'] = boom
+    qb_df['BUST'] = bust
+    qb_df['STARTER'] = starter
     qb_df.to_csv('final/qbs.csv')
 
     # Now on to RBs
@@ -83,6 +104,9 @@ def main():
     playoff_sos = []
     season_sos = []
     full_sos = []
+    boom = []
+    bust = []
+    starter = []
     for index, row in rb_df.iterrows():
         player_positions[index] = 'RB'
         if row['TEAM'] == 'FA':
@@ -93,10 +117,22 @@ def main():
             playoff_sos.append(playoff[row['TEAM']]['RB'])
             season_sos.append(season[row['TEAM']]['RB'])
             full_sos.append(full[row['TEAM']]['RB'])
+        
+        if index in all_boom_bust:
+            boom.append(all_boom_bust[index]['BOOM'])
+            bust.append(all_boom_bust[index]['BUST'])
+            starter.append(all_boom_bust[index]['STARTER'])
+        else:
+            boom.append(0)
+            bust.append(0)
+            starter.append(0)
     
     rb_df['FULL_SOS'] = full_sos
     rb_df['SEASON_SOS'] = season_sos
     rb_df['PLAYOFF_SOS'] = playoff_sos
+    rb_df['BOOM'] = boom
+    rb_df['BUST'] = bust
+    rb_df['STARTER'] = starter
     rb_df.to_csv('final/rbs.csv')
 
     # Now WRs
@@ -130,6 +166,9 @@ def main():
     playoff_sos = []
     season_sos = []
     full_sos = []
+    boom = []
+    bust = []
+    starter = []
     for index, row in wr_df.iterrows():
         player_positions[index] = 'WR'
         if row['TEAM'] == 'FA':
@@ -140,10 +179,22 @@ def main():
             playoff_sos.append(playoff[row['TEAM']]['WR'])
             season_sos.append(season[row['TEAM']]['WR'])
             full_sos.append(full[row['TEAM']]['WR'])
+        
+        if index in all_boom_bust:
+            boom.append(all_boom_bust[index]['BOOM'])
+            bust.append(all_boom_bust[index]['BUST'])
+            starter.append(all_boom_bust[index]['STARTER'])
+        else:
+            boom.append(0)
+            bust.append(0)
+            starter.append(0)
     
     wr_df['FULL_SOS'] = full_sos
     wr_df['SEASON_SOS'] = season_sos
     wr_df['PLAYOFF_SOS'] = playoff_sos
+    wr_df['BOOM'] = boom
+    wr_df['BUST'] = bust
+    wr_df['STARTER'] = starter
     wr_df.to_csv('final/wrs.csv')
 
     # Now TEs
@@ -177,6 +228,9 @@ def main():
     playoff_sos = []
     season_sos = []
     full_sos = []
+    boom = []
+    bust = []
+    starter = []
     for index, row in te_df.iterrows():
         player_positions[index] = 'TE'
         if row['TEAM'] == 'FA':
@@ -187,10 +241,22 @@ def main():
             playoff_sos.append(playoff[row['TEAM']]['TE'])
             season_sos.append(season[row['TEAM']]['TE'])
             full_sos.append(full[row['TEAM']]['TE'])
+        
+        if index in all_boom_bust:
+            boom.append(all_boom_bust[index]['BOOM'])
+            bust.append(all_boom_bust[index]['BUST'])
+            starter.append(all_boom_bust[index]['STARTER'])
+        else:
+            boom.append(0)
+            bust.append(0)
+            starter.append(0)
     
     te_df['FULL_SOS'] = full_sos
     te_df['SEASON_SOS'] = season_sos
     te_df['PLAYOFF_SOS'] = playoff_sos
+    te_df['BOOM'] = boom
+    te_df['BUST'] = bust
+    te_df['STARTER'] = starter
     te_df.to_csv('final/tes.csv')
 
     # Now DEFs
@@ -246,6 +312,9 @@ def main():
     playoff_sos = []
     season_sos = []
     full_sos = []
+    boom = []
+    bust = []
+    starter = []
     for index, row in k_df.iterrows():
         player_positions[index] = 'K'
         if row['TEAM'] == 'FA':
@@ -256,10 +325,22 @@ def main():
             playoff_sos.append(playoff[row['TEAM']]['K'])
             season_sos.append(season[row['TEAM']]['K'])
             full_sos.append(full[row['TEAM']]['K'])
+        
+        if index in all_boom_bust:
+            boom.append(all_boom_bust[index]['BOOM'])
+            bust.append(all_boom_bust[index]['BUST'])
+            starter.append(all_boom_bust[index]['STARTER'])
+        else:
+            boom.append(0)
+            bust.append(0)
+            starter.append(0)
     
     k_df['FULL_SOS'] = full_sos
     k_df['SEASON_SOS'] = season_sos
     k_df['PLAYOFF_SOS'] = playoff_sos
+    k_df['BOOM'] = boom
+    k_df['BUST'] = bust
+    k_df['STARTER'] = starter
     k_df.to_csv('final/ks.csv')
 
     # Now we'll do all
