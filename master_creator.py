@@ -17,6 +17,11 @@ def main():
     all_boom_df.set_index('PLAYER NAME', inplace=True)
     all_boom_bust = all_boom_df.to_dict('index')
 
+    # grab depth chart
+    depth_df = pd.read_csv('all_depth_chart.csv')
+    depth_df.set_index('PLAYER NAME', inplace=True)
+    depth_chart = depth_df.to_dict('index')
+
     # this dict will be used later for adding positions to everyone
     player_positions = {}
 
@@ -45,6 +50,7 @@ def main():
     boom = []
     bust = []
     starter = []
+    depth = []
 
     for index, row in qb_df.iterrows():
         player_positions[index] = 'QB'
@@ -65,6 +71,11 @@ def main():
             boom.append(0)
             bust.append(0)
             starter.append(0)
+
+        if index in depth_chart:
+            depth.append(depth_chart[index]['DEPTH'])
+        else:
+            depth.append(0)
     
     qb_df['FULL_SOS'] = full_sos
     qb_df['SEASON_SOS'] = season_sos
@@ -72,6 +83,7 @@ def main():
     qb_df['BOOM'] = boom
     qb_df['BUST'] = bust
     qb_df['STARTER'] = starter
+    qb_df['DEPTH'] = depth
     qb_df.to_csv('final/qbs.csv')
 
     # Now on to RBs
@@ -107,6 +119,8 @@ def main():
     boom = []
     bust = []
     starter = []
+    depth = []
+    
     for index, row in rb_df.iterrows():
         player_positions[index] = 'RB'
         if row['TEAM'] == 'FA':
@@ -126,6 +140,11 @@ def main():
             boom.append(0)
             bust.append(0)
             starter.append(0)
+
+        if index in depth_chart:
+            depth.append(depth_chart[index]['DEPTH'])
+        else:
+            depth.append(0)
     
     rb_df['FULL_SOS'] = full_sos
     rb_df['SEASON_SOS'] = season_sos
@@ -133,6 +152,7 @@ def main():
     rb_df['BOOM'] = boom
     rb_df['BUST'] = bust
     rb_df['STARTER'] = starter
+    rb_df['DEPTH'] = depth
     rb_df.to_csv('final/rbs.csv')
 
     # Now WRs
@@ -169,6 +189,8 @@ def main():
     boom = []
     bust = []
     starter = []
+    depth = []
+    
     for index, row in wr_df.iterrows():
         player_positions[index] = 'WR'
         if row['TEAM'] == 'FA':
@@ -188,6 +210,11 @@ def main():
             boom.append(0)
             bust.append(0)
             starter.append(0)
+
+        if index in depth_chart:
+            depth.append(depth_chart[index]['DEPTH'])
+        else:
+            depth.append(0)
     
     wr_df['FULL_SOS'] = full_sos
     wr_df['SEASON_SOS'] = season_sos
@@ -195,6 +222,7 @@ def main():
     wr_df['BOOM'] = boom
     wr_df['BUST'] = bust
     wr_df['STARTER'] = starter
+    wr_df['DEPTH'] = depth
     wr_df.to_csv('final/wrs.csv')
 
     # Now TEs
@@ -231,6 +259,8 @@ def main():
     boom = []
     bust = []
     starter = []
+    depth = []
+
     for index, row in te_df.iterrows():
         player_positions[index] = 'TE'
         if row['TEAM'] == 'FA':
@@ -250,6 +280,11 @@ def main():
             boom.append(0)
             bust.append(0)
             starter.append(0)
+
+        if index in depth_chart:
+            depth.append(depth_chart[index]['DEPTH'])
+        else:
+            depth.append(0)
     
     te_df['FULL_SOS'] = full_sos
     te_df['SEASON_SOS'] = season_sos
@@ -257,6 +292,7 @@ def main():
     te_df['BOOM'] = boom
     te_df['BUST'] = bust
     te_df['STARTER'] = starter
+    te_df['DEPTH'] = depth
     te_df.to_csv('final/tes.csv')
 
     # Now DEFs
