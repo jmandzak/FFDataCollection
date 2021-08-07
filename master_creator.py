@@ -412,6 +412,8 @@ def main():
     playoff_sos = []
     season_sos = []
     full_sos = []
+    depth = []
+
     for index, row in all_df.iterrows():
         name = index
         pos = "UNKNOWN"
@@ -429,11 +431,17 @@ def main():
             season_sos.append(season[row['TEAM']][pos])
             full_sos.append(full[row['TEAM']][pos])
 
+        if index in depth_chart:
+            depth.append(depth_chart[index]['DEPTH'])
+        else:
+            depth.append(0)
+
     #all_df['POS'] = position
     all_df.insert(0, 'POS', position)
     all_df['FULL_SOS'] = full_sos
     all_df['SEASON_SOS'] = season_sos
     all_df['PLAYOFF_SOS'] = playoff_sos
+    all_df['DEPTH'] = depth
     all_df.to_csv('final/all_positions.csv')
 
     # Time for the master sheet
