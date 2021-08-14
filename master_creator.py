@@ -112,6 +112,8 @@ def main():
     rb_df = rb_df.combine(rb_total_df, arbitrary_func)
     rb_df = rb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
+    rb_df.dropna(inplace=True)
+
     # assign strength of schedule
     playoff_sos = []
     season_sos = []
@@ -120,6 +122,8 @@ def main():
     bust = []
     starter = []
     depth = []
+
+    rb_df.dropna(inplace=True)
     
     for index, row in rb_df.iterrows():
         player_positions[index] = 'RB'
@@ -181,6 +185,8 @@ def main():
     wr_df = wr_df.combine(wr_rank_df, arbitrary_func)
     wr_df = wr_df.combine(wr_total_df, arbitrary_func)
     wr_df = wr_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
+    
+    wr_df.dropna(inplace=True)
     
     # assign strength of schedule
     playoff_sos = []
@@ -252,6 +258,8 @@ def main():
     te_df = te_df.combine(te_total_df, arbitrary_func)
     te_df = te_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
+    te_df.dropna(inplace=True)
+
     # assign strength of schedule
     playoff_sos = []
     season_sos = []
