@@ -39,10 +39,13 @@ def main():
     qb_total_df = pd.read_csv('qb_total_stats.csv')
     qb_total_df.set_index('PLAYER NAME', inplace=True)
 
-    qb_df = qb_avg_df.combine(qb_rank_df, arbitrary_func)
-    qb_df = qb_df.combine(qb_total_df, arbitrary_func)
+    qb_df = qb_avg_df.combine(qb_total_df, arbitrary_func)
+    qb_df = qb_df.drop(['POS_RK', 'POS_TIERS', 'TEAM'], axis=1)
+    qb_df = qb_df.combine(qb_rank_df, arbitrary_func)
     qb_df = qb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
+    qb_df.dropna(inplace=True)
+
     # assign strength of schedule and boom/bust/start
     playoff_sos = []
     season_sos = []
@@ -106,10 +109,11 @@ def main():
     rb_total_df.set_index('PLAYER NAME', inplace=True)
 
     rb_df = rb_avg_df.combine(rb_ppr_avg_df, arbitrary_func)
-    rb_df = rb_df.combine(rb_ppr_rank_df, arbitrary_func)
     rb_df = rb_df.combine(rb_ppr_total_df, arbitrary_func)
-    rb_df = rb_df.combine(rb_rank_df, arbitrary_func)
     rb_df = rb_df.combine(rb_total_df, arbitrary_func)
+    rb_df = rb_df.drop(['PPR_POS_RK', 'PPR_POS_TIERS', 'TEAM'], axis=1)
+    rb_df = rb_df.combine(rb_rank_df, arbitrary_func)
+    rb_df = rb_df.combine(rb_ppr_rank_df, arbitrary_func)
     rb_df = rb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     rb_df.dropna(inplace=True)
@@ -180,10 +184,11 @@ def main():
 
 
     wr_df = wr_avg_df.combine(wr_ppr_avg_df, arbitrary_func)
-    wr_df = wr_df.combine(wr_ppr_rank_df, arbitrary_func)
     wr_df = wr_df.combine(wr_ppr_total_df, arbitrary_func)
-    wr_df = wr_df.combine(wr_rank_df, arbitrary_func)
     wr_df = wr_df.combine(wr_total_df, arbitrary_func)
+    wr_df = wr_df.drop(['PPR_POS_RK', 'PPR_POS_TIERS', 'TEAM'], axis=1)
+    wr_df = wr_df.combine(wr_rank_df, arbitrary_func)
+    wr_df = wr_df.combine(wr_ppr_rank_df, arbitrary_func)
     wr_df = wr_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     wr_df.dropna(inplace=True)
@@ -252,10 +257,11 @@ def main():
 
 
     te_df = te_avg_df.combine(te_ppr_avg_df, arbitrary_func)
-    te_df = te_df.combine(te_ppr_rank_df, arbitrary_func)
     te_df = te_df.combine(te_ppr_total_df, arbitrary_func)
-    te_df = te_df.combine(te_rank_df, arbitrary_func)
     te_df = te_df.combine(te_total_df, arbitrary_func)
+    te_df = te_df.drop(['PPR_POS_RK', 'PPR_POS_TIERS', 'TEAM'], axis=1)
+    te_df = te_df.combine(te_rank_df, arbitrary_func)
+    te_df = te_df.combine(te_ppr_rank_df, arbitrary_func)
     te_df = te_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
     te_df.dropna(inplace=True)
@@ -408,10 +414,11 @@ def main():
     
 
     all_df = all_avg_df.combine(all_ppr_avg_df, arbitrary_func)
-    all_df = all_df.combine(all_ppr_rank_df, arbitrary_func)
     all_df = all_df.combine(all_ppr_total_df, arbitrary_func)
-    all_df = all_df.combine(all_rank_df, arbitrary_func)
     all_df = all_df.combine(all_total_df, arbitrary_func)
+    all_df = all_df.drop(['PPR_RK', 'PPR_TIERS', 'TEAM'], axis=1)
+    all_df = all_df.combine(all_rank_df, arbitrary_func)
+    all_df = all_df.combine(all_ppr_rank_df, arbitrary_func)
     all_df = all_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     all_df = all_df.dropna()
 
