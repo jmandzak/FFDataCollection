@@ -469,6 +469,7 @@ def main():
     # master_df = master_df.combine(def_df, arbitrary_func)
     # master_df = master_df.combine(k_df, arbitrary_func)
     master_df = master_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
+    master_df = master_df[~master_df.index.duplicated(keep='first')]
     master_df.to_csv('final/master_sheet.csv')
 
 
