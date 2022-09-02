@@ -1,0 +1,27 @@
+PPR ONLY:
+    all_ppr_rank_stats.csv: https://www.fantasypros.com/nfl/rankings/ppr-cheatsheets.php
+    all_ppr_avg_stats.csv: https://www.fantasypros.com/nfl/rankings/ppr-cheatsheets.php
+    all_ppr_total_stats.csv: 
+
+    qb_rank_stats.csv: https://www.fantasypros.com/nfl/rankings/qb-cheatsheets.php
+    qb_avg_stats.csv: 
+    qb_total_stats.csv:
+
+    rb_ppr_rank_stats.csv: https://www.fantasypros.com/nfl/rankings/ppr-rb-cheatsheets.php
+    rb_ppr_avg_stats.csv: 
+    rb_ppr_total_stats.csv: 
+
+    wr_ppr_rank_stats.csv: https://www.fantasypros.com/nfl/rankings/ppr-wr-cheatsheets.php
+    wr_ppr_avg_stats.csv: 
+    wr_ppr_total_stats.csv: 
+    
+    te_ppr_rank_stats.csv: https://www.fantasypros.com/nfl/rankings/ppr-te-cheatsheets.php
+    te_ppr_avg_stats.csv: 
+    te_ppr_total_stats.csv: 
+
+    all_boom_bust.csv: https://flurrysports.org/2021-fantasy-football-consistency-boom-bust-rankings-stats/
+    all_depth_chart.csv: https://fftoolbox.fulltimefantasy.com/football/depth-charts.cfm
+    sos_full.csv: https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=e
+    sos_playoff.csv: https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=h
+    sos_season.csv: https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=b
+    
