@@ -394,11 +394,11 @@ def main():
     k_df.to_csv('final/ks.csv')
 
     # Now we'll do all
-    all_avg_df = pd.read_csv('all_avg_stats.csv')
-    all_avg_df.set_index('PLAYER NAME', inplace=True)
-
     all_ppr_avg_df = pd.read_csv('all_ppr_avg_stats.csv')
     all_ppr_avg_df.set_index('PLAYER NAME', inplace=True)
+
+    all_avg_df = pd.read_csv('all_avg_stats.csv')
+    all_avg_df.set_index('PLAYER NAME', inplace=True)
     
     all_ppr_rank_df = pd.read_csv('all_ppr_rank_stats.csv')
     all_ppr_rank_df.set_index('PLAYER NAME', inplace=True)
