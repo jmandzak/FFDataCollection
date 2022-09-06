@@ -420,8 +420,8 @@ def main():
     all_df = all_df.combine(all_rank_df, arbitrary_func)
     all_df = all_df.combine(all_ppr_rank_df, arbitrary_func)
     all_df = all_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
-    all_df = all_df.dropna()
-
+    all_df = all_df.dropna(subset = ['TEAM'])
+    
     # assign strength of schedule and position
     position = []
     playoff_sos = []
