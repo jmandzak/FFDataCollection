@@ -44,7 +44,7 @@ def main():
     qb_df = qb_df.combine(qb_rank_df, arbitrary_func)
     qb_df = qb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
-    qb_df.dropna(inplace=True)
+    qb_df.dropna(inplace=True, subset=['TEAM'])
 
     # assign strength of schedule and boom/bust/start
     playoff_sos = []
@@ -116,8 +116,6 @@ def main():
     rb_df = rb_df.combine(rb_ppr_rank_df, arbitrary_func)
     rb_df = rb_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
-    rb_df.dropna(inplace=True)
-
     # assign strength of schedule
     playoff_sos = []
     season_sos = []
@@ -127,7 +125,7 @@ def main():
     starter = []
     depth = []
 
-    rb_df.dropna(inplace=True)
+    rb_df = rb_df.dropna(subset=['TEAM'])
     
     for index, row in rb_df.iterrows():
         player_positions[index] = 'RB'
@@ -191,7 +189,7 @@ def main():
     wr_df = wr_df.combine(wr_ppr_rank_df, arbitrary_func)
     wr_df = wr_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
-    wr_df.dropna(inplace=True)
+    wr_df.dropna(inplace=True, subset=['TEAM'])
     
     # assign strength of schedule
     playoff_sos = []
@@ -264,7 +262,7 @@ def main():
     te_df = te_df.combine(te_ppr_rank_df, arbitrary_func)
     te_df = te_df.rename(columns={'AVG.': 'AVG_RK', 'BEST': 'BEST_RK', 'PPR_AVG.': 'PPR_AVG_RK', 'PPR_BEST': 'PPR_BEST_RK', 'PPR_STD.DEV': 'PPR_STD.DEV_RK', 'PPR_WORST': 'PPR_WORST_RK', 'STD.DEV': 'STD.DEV_RK', 'WORST': 'WORST_RK'})
     
-    te_df.dropna(inplace=True)
+    te_df.dropna(inplace=True, subset=['TEAM'])
 
     # assign strength of schedule
     playoff_sos = []
@@ -461,7 +459,9 @@ def main():
 
     # Time for the master sheet
     master_df = pd.concat([qb_df, rb_df, wr_df, te_df, def_df, k_df], axis=0)
+    # master_df.to_csv('before.csv')
     master_df = master_df.combine(all_df, arbitrary_func)
+    # master_df.to_csv('after.csv')
     # master_df = all_df.combine(qb_df, arbitrary_func)
     # master_df = master_df.combine(rb_df, arbitrary_func)
     # master_df = master_df.combine(wr_df, arbitrary_func)
