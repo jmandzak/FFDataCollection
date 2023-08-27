@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","YDS","TDS","REC","YDS","TDS","ATT","YDS","TDS"
+"PPR_RK",PPR_TIERS,"PLAYER NAME",TEAM,"PPR_FAN PTS","PASS_YDS","PASS_TDS","REC","REC_YDS","REC_TDS","RUSH_ATT","RUSH_YDS","RUSH_TDS"
 "1",1,"Justin Jefferson",MIN,"368.7","0","0","128","1809","8","4","24","1"
 "2",1,"Ja'Marr Chase",CIN,"242.4","0","0","87","1046","9","5","8","0"
 "3",1,"Christian McCaffrey",SF,"356.4","0","0","85","741","5","244","1139","8"

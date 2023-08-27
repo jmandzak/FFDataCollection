@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","PTS VS.","SACK","SAFE","INT","FUMR","DEF TD","BLK KICK","RET TD"
+"POS_RK",POS_TIERS,"PLAYER NAME",TEAM,"AVG_FAN PTS","AVG_PTS VS.","AVG_SACK","AVG_SAFE","AVG_INT","AVG_FUMR","AVG_DEF TD","AVG_BLK KICK","AVG_RET TD"
 "1",1,"San Francisco 49ers",SF,"8.2","0.0","2.2","0.0","1.0","0.5","0.1","0.0","0.0"
 "2",1,"Dallas Cowboys",DAL,"8.9","0.0","2.8","0.0","0.8","0.9","0.2","0.0","0.0"
 "3",1,"Philadelphia Eagles",PHI,"7.9","0.0","3.7","0.0","0.9","0.5","0.1","0.0","0.0"

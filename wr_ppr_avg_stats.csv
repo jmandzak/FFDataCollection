@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","TGT","REC","YDS","TDS","ATT","YDS","TDS"
+PPR_RK,PPR_POS_TIERS,PLAYER NAME,TEAM,PPR_AVG_FAN PTS,"AVG_TGT","AVG_REC","AVG_REC_YDS","AVG_REC_TDS","AVG_RUSH_ATT","AVG_RUSH_YDS","AVG_RUSH_TDS"
 "1",1,"Justin Jefferson",MIN,"21.7","10.8","7.5","106.4","0.5","0.2","1.4","0.1"
 "2",1,"Ja'Marr Chase",CIN,"18.6","10.3","6.7","80.5","0.7","0.4","0.6","0.0"
 "3",1,"Cooper Kupp",LAR,"22.4","10.9","8.3","90.2","0.7","1.0","5.8","0.1"

@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","COMP","ATT","PCT","YDS","TDS","INT","ATT","YDS","TDS","SACK"
+"POS_RK",POS_TIERS,"PLAYER NAME",TEAM,"FAN PTS","PASS_COMP","PASS_ATT","PASS_PCT","PASS_YDS","PASS_TDS","INT","RUSH_ATT","RUSH_YDS","RUSH_TDS","SACK"
 "1",1,"Patrick Mahomes II",KC,"429.4","435","648","67%","5250","41","12","61","358","4","26"
 "2",1,"Jalen Hurts",PHI,"384","306","460","67%","3701","22","6","165","760","13","38"
 "3",1,"Josh Allen",BUF,"412.2","362","573","63%","4316","35","14","126","776","7","33"

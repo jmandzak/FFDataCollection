@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","ATT","YDS","TDS","TGT","REC","YDS","TDS"
+"PPR_POS_RK",PPR_POS_TIERS,"PLAYER NAME",TEAM,"PPR_FAN PTS","RUSH_ATT","RUSH_YDS","RUSH_TDS","REC_TGT","REC","REC_YDS","REC_TDS"
 "1",1,"Christian McCaffrey",SF,"356.4","244","1139","8","108","85","741","5"
 "2",1,"Austin Ekeler",LAC,"372.7","204","915","13","127","107","722","5"
 "3",1,"Saquon Barkley",NYG,"284","295","1312","10","76","57","338","0"

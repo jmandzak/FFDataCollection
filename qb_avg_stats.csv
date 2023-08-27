@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","COMP","ATT","PCT","YDS","TDS","INT","ATT","YDS","TDS","SACK"
+"POS_RK",POS_TIERS,"PLAYER NAME",TEAM,"AVG_FAN PTS","AVG_PASS_COMP","AVG_PASS_ATT","AVG_PASS_PCT","AVG_YDS","AVG_PASS_TDS","AVG_PASS_INT","AVG_RUSH_ATT","AVG_RUSH_YDS","AVG_RUSH_TDS","AVG_SACK"
 "1",1,"Patrick Mahomes II",KC,"25.3","25.6","38.1","67%","308.8","2.4","0.7","3.6","21.1","0.2","1.5"
 "2",1,"Jalen Hurts",PHI,"25.6","20.4","30.7","67%","246.7","1.5","0.4","11.0","50.7","0.9","2.5"
 "3",1,"Josh Allen",BUF,"24.2","21.3","33.7","63%","253.9","2.1","0.8","7.4","45.6","0.4","1.9"

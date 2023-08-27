@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","TGT","REC","YDS","TDS","ATT","YDS","TDS"
+"PPR_POS_RK",PPR_POS_TIERS,"PLAYER NAME",TEAM,"PPR_FAN PTS","REC_TGT","REC","REC_YDS","REC_TDS","RUSH_ATT","RUSH_YDS","RUSH_TDS"
 "1",1,"Travis Kelce",KC,"316.3","152","110","1338","12","2","5","0"
 "2",1,"Mark Andrews",BAL,"190.5","113","73","847","5","3","8","0"
 "3",1,"T.J. Hockenson",MIN,"215.4","129","86","914","6","0","0","0"

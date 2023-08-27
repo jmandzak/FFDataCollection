@@ -1,4 +1,4 @@
-"RK",TIERS,"PLAYER NAME",TEAM,"FAN PTS","PTS VS.","SACK","SAFE","INT","FUMR","DEF TD","BLK KICK","RET TD"
+"POS_RK",POS_TIERS,"PLAYER NAME",TEAM,"FAN PTS","PTS VS.","SACK","SAFE","INT","FUMR","DEF TD","BLK KICK","RET TD"
 "1",1,"San Francisco 49ers",SF,"163","0","44","0","20","10","3","0","0"
 "2",1,"Dallas Cowboys",DAL,"170","0","54","0","16","17","3","0","0"
 "3",1,"Philadelphia Eagles",PHI,"151","0","70","0","17","10","2","0","0"
