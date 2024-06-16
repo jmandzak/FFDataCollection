@@ -1,3 +1,4 @@
+import time
 import typing
 
 import pandas as pd
@@ -11,19 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-URLs = {
-    "all": "https://www.fantasypros.com/nfl/rankings/consensus-cheatsheets.php",
-    "all_ppr": "https://www.fantasypros.com/nfl/rankings/ppr-cheatsheets.php",
-    "qb": "https://www.fantasypros.com/nfl/rankings/qb-cheatsheets.php",
-    "rb": "https://www.fantasypros.com/nfl/rankings/rb-cheatsheets.php",
-    "rb_ppr": "https://www.fantasypros.com/nfl/rankings/ppr-rb-cheatsheets.php",
-    "wr": "https://www.fantasypros.com/nfl/rankings/wr-cheatsheets.php",
-    "wr_ppr": "https://www.fantasypros.com/nfl/rankings/ppr-wr-cheatsheets.php",
-    "te": "https://www.fantasypros.com/nfl/rankings/te-cheatsheets.php",
-    "te_ppr": "https://www.fantasypros.com/nfl/rankings/te-cheatsheets.php",
-    "k": "https://www.fantasypros.com/nfl/rankings/k-cheatsheets.php",
-    "def": "https://www.fantasypros.com/nfl/rankings/dst-cheatsheets.php",
-}
+from constants import AVG_DF_COLUMNS, TOTAL_DF_COLUMNS, URLs
 
 
 def setup_chrome_options() -> Options:
@@ -57,15 +46,12 @@ def download_rank_data() -> None:
         soup = _get_soup_from_desired_page(url, "Ranks", driver)
         table = soup.find("table", {"id": "ranking-table"})
         rows = table.find_all("tr")  # type: ignore
-        # tier = 0
         data = []
         for row in rows:
             if "tier-row" in row["class"]:
-                # tier += 1
                 pass
             elif "player-row" in row["class"]:
                 player_data = []
-                # player_data.append(tier)
                 cells = row.find_all("td")
                 for cell in cells:
                     player_data.append(cell.text)
@@ -74,7 +60,6 @@ def download_rank_data() -> None:
                 player_data = [player_data[2]] + player_data[4:8]
                 # the name and team are in the same cell, so we need to split them
                 name, team = _parse_name_team(player_data[0])
-                name = match_name(name)
                 player_data = [name, team] + player_data[1:]
                 data.append(player_data)
 
@@ -84,6 +69,57 @@ def download_rank_data() -> None:
         df.to_csv(f"stats24/{position}_rank_stats.csv", index=False)
 
     driver.quit()
+
+
+def download_stat_data(stat_type: str) -> None:
+    driver = _create_driver()
+    button_text = "Stats (Avg.)" if stat_type == "avg" else "Stats (Totals)"
+    df_columns = AVG_DF_COLUMNS if stat_type == "avg" else TOTAL_DF_COLUMNS
+
+    for position, url in URLs.items():
+        print(f"Downloading {position} data")
+        soup = _get_soup_from_desired_page(url, button_text, driver)
+        table = soup.find("table", {"id": "ranking-table"})
+        rows = table.find_all("tr")  # type: ignore
+        tier = 0
+        data = []
+        for row in rows:
+            if "tier-row" in row["class"]:
+                tier += 1
+                pass
+            elif "player-row" in row["class"]:
+                player_data = []
+                cells = row.find_all("td")
+                for cell in cells:
+                    player_data.append(cell.text)
+
+                # Base which columns are important based on PPR. If non ppr, only get rank, tier, name, team, and fantasy points
+                # else get everything
+                if _is_ppr_eligible(position):
+                    player_data = player_data[0:1] + player_data[2:]
+                else:
+                    player_data = player_data[0:1] + player_data[2:4]
+
+                # the name and team are in the same cell, so we need to split them
+                name, team = _parse_name_team(player_data[1])
+                player_data = [player_data[0], tier, name, team] + player_data[2:]
+                data.append(player_data)
+
+        df = pd.DataFrame(data, columns=df_columns[position])
+        if stat_type == "avg":
+            df.to_csv(f"stats24/{position}_avg_stats.csv", index=False)
+        else:
+            df.to_csv(f"stats24/{position}_total_stats.csv", index=False)
+
+    driver.quit()
+
+
+def _is_ppr_eligible(position: str) -> bool:
+    if "ppr" in position:
+        return True
+    if position in ["qb", "def", "k"]:
+        return True
+    return False
 
 
 def _create_driver() -> webdriver.Chrome:
@@ -124,6 +160,8 @@ def _get_soup_from_desired_page(
         print(f"Could not find {page_type} button")
         assert False
 
+    # Wait until the new page is loaded before getting the source
+    time.sleep(2)
     return BeautifulSoup(driver.page_source, "html.parser")
 
 
@@ -132,11 +170,15 @@ def _parse_name_team(name_team: str) -> typing.Tuple[str, str]:
     end = name_team.rfind(")")
     name = name_team[:start].strip()
     team = name_team[start + 1 : end]
+    name = match_name(name)
+    assert name is not None
     return name, team
 
 
 def main() -> None:
     download_rank_data()
+    download_stat_data("avg")
+    download_stat_data("total")
 
 
 if __name__ == "__main__":
