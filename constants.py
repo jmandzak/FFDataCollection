@@ -69,7 +69,7 @@ AVG_DF_COLUMNS = {
     ],
     "rb": ["POS_RK", "POS_TIERS", "PLAYER NAME", "TEAM", "AVG_FAN PTS"],
     "rb_ppr": [
-        "PPR_RK",
+        "PPR_POS_RK",
         "PPR_POS_TIERS",
         "PLAYER NAME",
         "TEAM",
@@ -84,7 +84,7 @@ AVG_DF_COLUMNS = {
     ],
     "wr": ["POS_RK", "POS_TIERS", "PLAYER NAME", "TEAM", "AVG_FAN PTS"],
     "wr_ppr": [
-        "PPR_RK",
+        "PPR_POS_RK",
         "PPR_POS_TIERS",
         "PLAYER NAME",
         "TEAM",
@@ -99,7 +99,7 @@ AVG_DF_COLUMNS = {
     ],
     "te": ["POS_RK", "POS_TIERS", "PLAYER NAME", "TEAM", "AVG_FAN PTS"],
     "te_ppr": [
-        "PPR_RK",
+        "PPR_POS_RK",
         "PPR_POS_TIERS",
         "PLAYER NAME",
         "TEAM",
