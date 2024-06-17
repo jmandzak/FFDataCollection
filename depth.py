@@ -51,7 +51,7 @@ def main() -> None:
         depths.append(depth)
     _remove_unmatched_players(names, depths)
     df = pd.DataFrame(data=zip(names, depths), columns=["PLAYER NAME", "DEPTH"])
-    df.to_csv("all_depth_chart.csv", index=False)
+    df.to_csv("stats24/all_depth_chart.csv", index=False)
 
 
 if __name__ == "__main__":

@@ -97,7 +97,7 @@ def _create_csv(data: typing.Dict[str, BoomStartBust]) -> None:
         data=zip(player_names, games, boom, start, bust, ppr_boom, ppr_start, ppr_bust),
         columns=BOOM_BUST_COLUMNS,
     )
-    df.to_csv("all_boom_bust.csv", index=False)
+    df.to_csv("stats24/all_boom_bust.csv", index=False)
 
 
 def main() -> None:
