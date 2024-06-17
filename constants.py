@@ -12,6 +12,27 @@ URLs = {
     "def": "https://www.fantasypros.com/nfl/rankings/dst-cheatsheets.php",
 }
 
+BOOM_BUST_URLs = {
+    "qb": "https://www.fantasypros.com/nfl/reports/boom-bust-qb.php",
+    "rb": "https://www.fantasypros.com/nfl/reports/boom-bust-rb.php",
+    "rb_ppr": "https://www.fantasypros.com/nfl/reports/ppr-boom-bust-rb.php",
+    "wr": "https://www.fantasypros.com/nfl/reports/boom-bust-wr.php",
+    "wr_ppr": "https://www.fantasypros.com/nfl/reports/ppr-boom-bust-wr.php",
+    "te": "https://www.fantasypros.com/nfl/reports/boom-bust-te.php",
+    "te_ppr": "https://www.fantasypros.com/nfl/reports/ppr-boom-bust-te.php",
+}
+
+BOOM_BUST_COLUMNS = [
+    "PLAYER NAME",
+    "GAMES",
+    "BOOM",
+    "STARTER",
+    "BUST",
+    "PPR_BOOM",
+    "PPR_STARTER",
+    "PPR_BUST",
+]
+
 AVG_DF_COLUMNS = {
     "all": ["RK", "TIERS", "PLAYER NAME", "TEAM", "AVG_FAN PTS"],
     "all_ppr": [
