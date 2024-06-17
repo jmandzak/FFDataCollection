@@ -146,3 +146,9 @@ AVG_DF_COLUMNS = {
 TOTAL_DF_COLUMNS = {
     k: [col.replace("AVG_", "") for col in v] for k, v in AVG_DF_COLUMNS.items()
 }
+
+SOS_URLs = {
+    "full": "https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=e",
+    "playoff": "https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=h",
+    "season": "https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=b",
+}
