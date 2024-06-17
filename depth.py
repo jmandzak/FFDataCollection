@@ -8,9 +8,13 @@ from FootballNameMatcher import match_name
 URL = "https://fftoolbox.fulltimefantasy.com/football/depth-charts.cfm"
 
 
-def _get_depth_and_name(player: str) -> typing.Tuple[str, typing.Optional[str]]:
+def _get_depth_and_name(
+    player: str,
+) -> typing.Tuple[typing.Optional[str], typing.Optional[str]]:
     # The format is QB1 Name, QB2 Name, etc. We want to split the number and name
     depth, name = player.split(" ", 1)
+    if depth[:-1] not in ["QB", "RB", "WR", "TE", "PK"]:
+        return None, None
     depth = depth[-1]
     name = match_name(name, force_last_name_match=True)
     return depth, name
@@ -19,7 +23,6 @@ def _get_depth_and_name(player: str) -> typing.Tuple[str, typing.Optional[str]]:
 def _remove_unmatched_players(
     names: typing.List[str], depths: typing.List[str]
 ) -> None:
-    print(names)
     indices_to_remove = []
     for i, name in enumerate(names):
         if name is None:
@@ -47,6 +50,8 @@ def main() -> None:
     depths = []
     for player in players:
         depth, name = _get_depth_and_name(player)
+        if depth is None or name is None:
+            continue
         names.append(name)
         depths.append(depth)
     _remove_unmatched_players(names, depths)
