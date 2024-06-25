@@ -12,7 +12,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from constants import AVG_DF_COLUMNS, TOTAL_DF_COLUMNS, URLs
+from constants import AVG_DF_COLUMNS, RANK_DF_COLUMNS, TOTAL_DF_COLUMNS, URLs
 
 
 def setup_chrome_options() -> Options:
@@ -47,8 +47,10 @@ def download_rank_data() -> None:
         table = soup.find("table", {"id": "ranking-table"})
         rows = table.find_all("tr")  # type: ignore
         data = []
+        tier = 0
         for row in rows:
             if "tier-row" in row["class"]:
+                tier += 1
                 pass
             elif "player-row" in row["class"]:
                 player_data = []
@@ -56,16 +58,20 @@ def download_rank_data() -> None:
                 for cell in cells:
                     player_data.append(cell.text)
 
-                # We only care about columns 3 (NAME + TEAM), and 5-8 (BEST, WORST, AVG, STD.DEV)
-                player_data = [player_data[2]] + player_data[4:8]
                 # the name and team are in the same cell, so we need to split them
-                name, team = _parse_name_team(player_data[0])
-                player_data = [name, team] + player_data[1:]
-                data.append(player_data)
+                name, team = _parse_name_team(player_data[2])
 
-        df = pd.DataFrame(
-            data, columns=["PLAYER NAME", "TEAM", "BEST", "WORST", "AVG.", "STD.DEV"]
-        )
+                # We only care about column 0 (maybe), columns 3 (NAME + TEAM), and 5-8 (BEST, WORST, AVG, STD.DEV)
+                if "RK" in RANK_DF_COLUMNS[position][0]:
+                    player_data = (
+                        [tier] + [player_data[0]] + [name, team] + player_data[4:8]
+                    )
+                else:
+                    player_data = [name, team] + player_data[4:8]
+                if player_data[-1] == "-":
+                    player_data[-1] = str(0)
+                data.append(player_data)
+        df = pd.DataFrame(data, columns=RANK_DF_COLUMNS[position])
         df.to_csv(f"stats24/{position}_rank_stats.csv", index=False)
 
     driver.quit()
@@ -177,8 +183,8 @@ def _parse_name_team(name_team: str) -> typing.Tuple[str, str]:
 
 def main() -> None:
     download_rank_data()
-    download_stat_data("avg")
-    download_stat_data("total")
+    # download_stat_data("avg")
+    # download_stat_data("total")
 
 
 if __name__ == "__main__":
