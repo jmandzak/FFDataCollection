@@ -61,13 +61,13 @@ def download_rank_data() -> None:
                 # the name and team are in the same cell, so we need to split them
                 name, team = _parse_name_team(player_data[2])
 
-                # We only care about column 0 (maybe), columns 3 (NAME + TEAM), and 5-8 (BEST, WORST, AVG, STD.DEV)
+                # We only care about column 0 (maybe), columns 2 (NAME + TEAM), and 3-6 (BEST, WORST, AVG, STD.DEV)
                 if "RK" in RANK_DF_COLUMNS[position][0]:
                     player_data = (
-                        [tier] + [player_data[0]] + [name, team] + player_data[4:8]
+                        [tier] + [player_data[0]] + [name, team] + player_data[3:7]
                     )
                 else:
-                    player_data = [name, team] + player_data[4:8]
+                    player_data = [name, team] + player_data[3:7]
                 if player_data[-1] == "-":
                     player_data[-1] = str(0)
                 data.append(player_data)
