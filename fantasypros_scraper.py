@@ -62,7 +62,7 @@ def download_rank_data() -> None:
                 name, team = _parse_name_team(player_data[2])
 
                 # if this position is all, throw out the position column (column 3)
-                if "ALL" in position:
+                if "all" in position:
                     player_data = player_data[0:3] + player_data[4:]
 
                 # We only care about column 0 (maybe), columns 2 (NAME + TEAM), and 3-6 (BEST, WORST, AVG, STD.DEV)
@@ -187,8 +187,8 @@ def _parse_name_team(name_team: str) -> typing.Tuple[str, str]:
 
 def main() -> None:
     download_rank_data()
-    # download_stat_data("avg")
-    # download_stat_data("total")
+    download_stat_data("avg")
+    download_stat_data("total")
 
 
 if __name__ == "__main__":
