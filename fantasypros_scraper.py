@@ -64,7 +64,7 @@ def download_rank_data() -> None:
                 # We only care about column 0 (maybe), columns 2 (NAME + TEAM), and 3-6 (BEST, WORST, AVG, STD.DEV)
                 if "RK" in RANK_DF_COLUMNS[position][0]:
                     player_data = (
-                        [tier] + [player_data[0]] + [name, team] + player_data[3:7]
+                        [player_data[0]] + [tier] + [name, team] + player_data[3:7]
                     )
                 else:
                     player_data = [name, team] + player_data[3:7]
