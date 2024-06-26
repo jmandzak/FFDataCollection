@@ -61,6 +61,10 @@ def download_rank_data() -> None:
                 # the name and team are in the same cell, so we need to split them
                 name, team = _parse_name_team(player_data[2])
 
+                # if this position is all, throw out the position column (column 3)
+                if "ALL" in position:
+                    player_data = player_data[0:3] + player_data[4:]
+
                 # We only care about column 0 (maybe), columns 2 (NAME + TEAM), and 3-6 (BEST, WORST, AVG, STD.DEV)
                 if "RK" in RANK_DF_COLUMNS[position][0]:
                     player_data = (
