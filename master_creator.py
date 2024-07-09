@@ -160,6 +160,8 @@ def main():
     depth = []
 
     rb_df = rb_df.dropna(subset=["TEAM"])
+    # drop duplicates
+    rb_df = rb_df[~rb_df.index.duplicated(keep="first")]
 
     for index, row in rb_df.iterrows():
         player_positions[index] = "RB"
@@ -243,6 +245,8 @@ def main():
     )
 
     wr_df.dropna(inplace=True, subset=["TEAM"])
+    # drop duplicates
+    wr_df = wr_df[~wr_df.index.duplicated(keep="first")]
 
     # assign strength of schedule
     playoff_sos = []
@@ -338,6 +342,8 @@ def main():
     )
 
     te_df.dropna(inplace=True, subset=["TEAM"])
+    # drop duplicates
+    te_df = te_df[~te_df.index.duplicated(keep="first")]
 
     # assign strength of schedule
     playoff_sos = []
@@ -579,10 +585,35 @@ def main():
     all_df["DEPTH"] = depth
     all_df.to_csv("final/all_positions.csv")
 
-    # Time for the master sheet
-    master_df = pd.concat([qb_df, rb_df, wr_df, te_df, def_df, k_df], axis=0)
-    # master_df.to_csv('before.csv')
-    master_df = master_df.combine(all_df, arbitrary_func)
+    # For the master sheet, we'll combine all of the dataframes, keeping any rows with unique indices and combining the rest
+    master_dictionary = all_df.to_dict("index")
+    positional_dictionaries = [
+        qb_df.to_dict("index"),
+        rb_df.to_dict("index"),
+        wr_df.to_dict("index"),
+        te_df.to_dict("index"),
+        def_df.to_dict("index"),
+        k_df.to_dict("index"),
+    ]
+
+    for pos_dict in positional_dictionaries:
+        for key, value in pos_dict.items():
+            if key not in master_dictionary:
+                master_dictionary[key] = value
+            else:
+                for k, v in value.items():
+                    if (
+                        k not in master_dictionary[key]
+                        or master_dictionary[key][k] == ""
+                        or pd.isnull(master_dictionary[key][k])
+                    ):
+                        master_dictionary[key][k] = v
+            master_dictionary[key]["POS"] = player_positions[key]
+
+    master_df = pd.DataFrame.from_dict(master_dictionary, orient="index")
+    # set the index column name to PLAYER NAME
+    master_df.index.name = "PLAYER NAME"
+
     # master_df.to_csv('after.csv')
     # master_df = all_df.combine(qb_df, arbitrary_func)
     # master_df = master_df.combine(rb_df, arbitrary_func)
