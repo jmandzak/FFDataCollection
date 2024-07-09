@@ -61,6 +61,9 @@ def main():
     boom = []
     bust = []
     starter = []
+    ppr_boom = []
+    ppr_bust = []
+    ppr_starter = []
     depth = []
 
     for index, row in qb_df.iterrows():
@@ -78,10 +81,16 @@ def main():
             boom.append(all_boom_bust[index]["BOOM"])
             bust.append(all_boom_bust[index]["BUST"])
             starter.append(all_boom_bust[index]["STARTER"])
+            ppr_boom.append(all_boom_bust[index]["PPR_BOOM"])
+            ppr_bust.append(all_boom_bust[index]["PPR_BUST"])
+            ppr_starter.append(all_boom_bust[index]["PPR_STARTER"])
         else:
             boom.append(0)
             bust.append(0)
             starter.append(0)
+            ppr_boom.append(0)
+            ppr_bust.append(0)
+            ppr_starter.append(0)
 
         if index in depth_chart:
             depth.append(depth_chart[index]["DEPTH"])
@@ -94,6 +103,9 @@ def main():
     qb_df["BOOM"] = boom
     qb_df["BUST"] = bust
     qb_df["STARTER"] = starter
+    qb_df["PPR_BOOM"] = ppr_boom
+    qb_df["PPR_BUST"] = ppr_bust
+    qb_df["PPR_STARTER"] = ppr_starter
     qb_df["DEPTH"] = depth
     qb_df.to_csv("final/qbs.csv")
 
@@ -142,6 +154,9 @@ def main():
     boom = []
     bust = []
     starter = []
+    ppr_boom = []
+    ppr_bust = []
+    ppr_starter = []
     depth = []
 
     rb_df = rb_df.dropna(subset=["TEAM"])
@@ -161,10 +176,16 @@ def main():
             boom.append(all_boom_bust[index]["BOOM"])
             bust.append(all_boom_bust[index]["BUST"])
             starter.append(all_boom_bust[index]["STARTER"])
+            ppr_boom.append(all_boom_bust[index]["PPR_BOOM"])
+            ppr_bust.append(all_boom_bust[index]["PPR_BUST"])
+            ppr_starter.append(all_boom_bust[index]["PPR_STARTER"])
         else:
             boom.append(0)
             bust.append(0)
             starter.append(0)
+            ppr_boom.append(0)
+            ppr_bust.append(0)
+            ppr_starter.append(0)
 
         if index in depth_chart:
             depth.append(depth_chart[index]["DEPTH"])
@@ -177,6 +198,9 @@ def main():
     rb_df["BOOM"] = boom
     rb_df["BUST"] = bust
     rb_df["STARTER"] = starter
+    rb_df["PPR_BOOM"] = ppr_boom
+    rb_df["PPR_BUST"] = ppr_bust
+    rb_df["PPR_STARTER"] = ppr_starter
     rb_df["DEPTH"] = depth
     rb_df.to_csv("final/rbs.csv")
 
@@ -227,6 +251,9 @@ def main():
     boom = []
     bust = []
     starter = []
+    ppr_boom = []
+    ppr_bust = []
+    ppr_starter = []
     depth = []
 
     for index, row in wr_df.iterrows():
@@ -244,10 +271,16 @@ def main():
             boom.append(all_boom_bust[index]["BOOM"])
             bust.append(all_boom_bust[index]["BUST"])
             starter.append(all_boom_bust[index]["STARTER"])
+            ppr_boom.append(all_boom_bust[index]["PPR_BOOM"])
+            ppr_bust.append(all_boom_bust[index]["PPR_BUST"])
+            ppr_starter.append(all_boom_bust[index]["PPR_STARTER"])
         else:
             boom.append(0)
             bust.append(0)
             starter.append(0)
+            ppr_boom.append(0)
+            ppr_bust.append(0)
+            ppr_starter.append(0)
 
         if index in depth_chart:
             depth.append(depth_chart[index]["DEPTH"])
@@ -260,6 +293,9 @@ def main():
     wr_df["BOOM"] = boom
     wr_df["BUST"] = bust
     wr_df["STARTER"] = starter
+    wr_df["PPR_BOOM"] = ppr_boom
+    wr_df["PPR_BUST"] = ppr_bust
+    wr_df["PPR_STARTER"] = ppr_starter
     wr_df["DEPTH"] = depth
     wr_df.to_csv("final/wrs.csv")
 
@@ -310,6 +346,9 @@ def main():
     boom = []
     bust = []
     starter = []
+    ppr_boom = []
+    ppr_bust = []
+    ppr_starter = []
     depth = []
 
     for index, row in te_df.iterrows():
@@ -327,10 +366,16 @@ def main():
             boom.append(all_boom_bust[index]["BOOM"])
             bust.append(all_boom_bust[index]["BUST"])
             starter.append(all_boom_bust[index]["STARTER"])
+            ppr_boom.append(all_boom_bust[index]["PPR_BOOM"])
+            ppr_bust.append(all_boom_bust[index]["PPR_BUST"])
+            ppr_starter.append(all_boom_bust[index]["PPR_STARTER"])
         else:
             boom.append(0)
             bust.append(0)
             starter.append(0)
+            ppr_boom.append(0)
+            ppr_bust.append(0)
+            ppr_starter.append(0)
 
         if index in depth_chart:
             depth.append(depth_chart[index]["DEPTH"])
@@ -343,6 +388,9 @@ def main():
     te_df["BOOM"] = boom
     te_df["BUST"] = bust
     te_df["STARTER"] = starter
+    te_df["PPR_BOOM"] = ppr_boom
+    te_df["PPR_BUST"] = ppr_bust
+    te_df["PPR_STARTER"] = ppr_starter
     te_df["DEPTH"] = depth
     te_df.to_csv("final/tes.csv")
 
@@ -415,6 +463,9 @@ def main():
     boom = []
     bust = []
     starter = []
+    ppr_boom = []
+    ppr_bust = []
+    ppr_starter = []
     for index, row in k_df.iterrows():
         player_positions[index] = "K"
         if row["TEAM"] == "FA":
@@ -430,10 +481,16 @@ def main():
             boom.append(all_boom_bust[index]["BOOM"])
             bust.append(all_boom_bust[index]["BUST"])
             starter.append(all_boom_bust[index]["STARTER"])
+            ppr_boom.append(all_boom_bust[index]["PPR_BOOM"])
+            ppr_bust.append(all_boom_bust[index]["PPR_BUST"])
+            ppr_starter.append(all_boom_bust[index]["PPR_STARTER"])
         else:
             boom.append(0)
             bust.append(0)
             starter.append(0)
+            ppr_boom.append(0)
+            ppr_bust.append(0)
+            ppr_starter.append(0)
 
     k_df["FULL_SOS"] = full_sos
     k_df["SEASON_SOS"] = season_sos
@@ -441,6 +498,9 @@ def main():
     k_df["BOOM"] = boom
     k_df["BUST"] = bust
     k_df["STARTER"] = starter
+    k_df["PPR_BOOM"] = ppr_boom
+    k_df["PPR_BUST"] = ppr_bust
+    k_df["PPR_STARTER"] = ppr_starter
     k_df.to_csv("final/ks.csv")
 
     # Now we'll do all
