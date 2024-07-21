@@ -547,6 +547,7 @@ def main():
         }
     )
     all_df = all_df.dropna(subset=["TEAM"])
+    all_df = all_df[~all_df.index.duplicated(keep="first")]
 
     # assign strength of schedule and position
     position = []
