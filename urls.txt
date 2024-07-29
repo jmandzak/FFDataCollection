@@ -19,6 +19,9 @@ PPR ONLY:
     te_ppr_avg_stats.csv: 
     te_ppr_total_stats.csv: 
 
+    adp: ppr - https://www.fantasypros.com/nfl/adp/ppr-overall.php
+         standard - https://www.fantasypros.com/nfl/adp/overall.php
+
     all_boom_bust.csv: https://flurrysports.org/2021-fantasy-football-consistency-boom-bust-rankings-stats/
      - Deprecated, now use https://www.fantasypros.com/nfl/reports/boom-bust-qb.php
      

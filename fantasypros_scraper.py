@@ -2,6 +2,7 @@ import time
 import typing
 
 import pandas as pd
+import requests
 from bs4 import BeautifulSoup
 from FootballNameMatcher.match import match_name
 from selenium import webdriver
@@ -12,7 +13,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from constants import AVG_DF_COLUMNS, RANK_DF_COLUMNS, TOTAL_DF_COLUMNS, URLs
+from constants import ADP_URLS, AVG_DF_COLUMNS, RANK_DF_COLUMNS, TOTAL_DF_COLUMNS, URLs
 
 
 def setup_chrome_options() -> Options:
@@ -124,6 +125,32 @@ def download_stat_data(stat_type: str) -> None:
     driver.quit()
 
 
+def download_adp_data() -> None:
+    IRRELEVANT_ADP = 200
+    for league_type, url in ADP_URLS.items():
+        page = requests.get(url)
+        soup = BeautifulSoup(page.content, "html.parser")
+        table = soup.find("table")
+        rows = table.find_all("tr")
+        data = []
+        important_column = -1 if league_type == "standard" else 3
+        for row in rows:
+            player_data = []
+            cells = row.find_all("td")
+            if (
+                len(cells) == 0
+                or cells[important_column].text.strip() == ""
+                or float(cells[important_column].text) > IRRELEVANT_ADP
+            ):
+                continue
+            name, _, _ = _parse_name_team_bye(cells[1].text)
+            player_data.append(name)
+            player_data.append(cells[important_column].text)
+            data.append(player_data)
+        df = pd.DataFrame(data, columns=["NAME", "ADP"])
+        df.to_csv(f"stats24/{league_type}_adp.csv", index=False)
+
+
 def _is_ppr_eligible(position: str) -> bool:
     if "ppr" in position:
         return True
@@ -185,10 +212,31 @@ def _parse_name_team(name_team: str) -> typing.Tuple[str, str]:
     return name, team
 
 
+def _parse_name_team_bye(name_team_bye: str) -> typing.Tuple[str, str, str]:
+    # format is first last team (bye)
+    # special case for free agents
+    if "(" not in name_team_bye:
+        name = match_name(name_team_bye.strip())
+        assert name is not None
+        return name, "FA", "0"
+
+    start = name_team_bye.find("(")
+    end = name_team_bye.rfind(")")
+    name_team = name_team_bye[:start].strip()
+    bye = name_team_bye[start + 1 : end]
+    split_name_team = name_team.split(" ")
+    team = split_name_team[-1]
+    name = " ".join(split_name_team[:-1])
+    name = match_name(name)
+    assert name is not None
+    return name, team, bye
+
+
 def main() -> None:
     download_rank_data()
     download_stat_data("avg")
     download_stat_data("total")
+    download_adp_data()
 
 
 if __name__ == "__main__":

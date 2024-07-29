@@ -225,3 +225,8 @@ SOS_URLs = {
     "playoff": "https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=h",
     "season": "https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=b",
 }
+
+ADP_URLS = {
+    "standard": "https://www.fantasypros.com/nfl/adp/overall.php",
+    "ppr": "https://www.fantasypros.com/nfl/adp/ppr-overall.php",
+}
