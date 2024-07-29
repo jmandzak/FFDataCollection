@@ -23,6 +23,14 @@ def main():
     depth_df.set_index("PLAYER NAME", inplace=True)
     depth_chart = depth_df.to_dict("index")
 
+    # Grab ADP
+    standard_adp_df = pd.read_csv("standard_adp.csv")
+    standard_adp_df.set_index("NAME", inplace=True)
+    ppr_adp_df = pd.read_csv("ppr_adp.csv")
+    ppr_adp_df.set_index("NAME", inplace=True)
+    standard_adp = standard_adp_df.to_dict("index")
+    ppr_adp = ppr_adp_df.to_dict("index")
+
     # this dict will be used later for adding positions to everyone
     player_positions = {}
 
@@ -65,6 +73,8 @@ def main():
     ppr_bust = []
     ppr_starter = []
     depth = []
+    standard_adps = []
+    ppr_adps = []
 
     for index, row in qb_df.iterrows():
         player_positions[index] = "QB"
@@ -97,6 +107,16 @@ def main():
         else:
             depth.append(0)
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     qb_df["FULL_SOS"] = full_sos
     qb_df["SEASON_SOS"] = season_sos
     qb_df["PLAYOFF_SOS"] = playoff_sos
@@ -107,6 +127,8 @@ def main():
     qb_df["PPR_BUST"] = ppr_bust
     qb_df["PPR_STARTER"] = ppr_starter
     qb_df["DEPTH"] = depth
+    qb_df["STANDARD_ADP"] = standard_adps
+    qb_df["PPR_ADP"] = ppr_adps
     qb_df.to_csv("final/qbs.csv")
 
     # Now on to RBs
@@ -158,6 +180,8 @@ def main():
     ppr_bust = []
     ppr_starter = []
     depth = []
+    standard_adps = []
+    ppr_adps = []
 
     rb_df = rb_df.dropna(subset=["TEAM"])
     # drop duplicates
@@ -194,6 +218,16 @@ def main():
         else:
             depth.append(0)
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     rb_df["FULL_SOS"] = full_sos
     rb_df["SEASON_SOS"] = season_sos
     rb_df["PLAYOFF_SOS"] = playoff_sos
@@ -204,6 +238,8 @@ def main():
     rb_df["PPR_BUST"] = ppr_bust
     rb_df["PPR_STARTER"] = ppr_starter
     rb_df["DEPTH"] = depth
+    rb_df["STANDARD_ADP"] = standard_adps
+    rb_df["PPR_ADP"] = ppr_adps
     rb_df.to_csv("final/rbs.csv")
 
     # Now WRs
@@ -259,6 +295,8 @@ def main():
     ppr_bust = []
     ppr_starter = []
     depth = []
+    standard_adps = []
+    ppr_adps = []
 
     for index, row in wr_df.iterrows():
         player_positions[index] = "WR"
@@ -291,6 +329,16 @@ def main():
         else:
             depth.append(0)
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     wr_df["FULL_SOS"] = full_sos
     wr_df["SEASON_SOS"] = season_sos
     wr_df["PLAYOFF_SOS"] = playoff_sos
@@ -301,6 +349,8 @@ def main():
     wr_df["PPR_BUST"] = ppr_bust
     wr_df["PPR_STARTER"] = ppr_starter
     wr_df["DEPTH"] = depth
+    wr_df["STANDARD_ADP"] = standard_adps
+    wr_df["PPR_ADP"] = ppr_adps
     wr_df.to_csv("final/wrs.csv")
 
     # Now TEs
@@ -356,6 +406,8 @@ def main():
     ppr_bust = []
     ppr_starter = []
     depth = []
+    standard_adps = []
+    ppr_adps = []
 
     for index, row in te_df.iterrows():
         player_positions[index] = "TE"
@@ -388,6 +440,16 @@ def main():
         else:
             depth.append(0)
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     te_df["FULL_SOS"] = full_sos
     te_df["SEASON_SOS"] = season_sos
     te_df["PLAYOFF_SOS"] = playoff_sos
@@ -398,6 +460,8 @@ def main():
     te_df["PPR_BUST"] = ppr_bust
     te_df["PPR_STARTER"] = ppr_starter
     te_df["DEPTH"] = depth
+    te_df["STANDARD_ADP"] = standard_adps
+    te_df["PPR_ADP"] = ppr_adps
     te_df.to_csv("final/tes.csv")
 
     # Now DEFs
@@ -425,6 +489,8 @@ def main():
     playoff_sos = []
     season_sos = []
     full_sos = []
+    standard_adps = []
+    ppr_adps = []
     for index, row in def_df.iterrows():
         player_positions[index] = "DEF"
         if row["TEAM"] == "FA":
@@ -436,9 +502,21 @@ def main():
             season_sos.append(season[row["TEAM"]]["DEF"])
             full_sos.append(full[row["TEAM"]]["DEF"])
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     def_df["FULL_SOS"] = full_sos
     def_df["SEASON_SOS"] = season_sos
     def_df["PLAYOFF_SOS"] = playoff_sos
+    def_df["STANDARD_ADP"] = standard_adps
+    def_df["PPR_ADP"] = ppr_adps
     def_df.to_csv("final/defs.csv")
 
     # And finally kickers
@@ -472,6 +550,8 @@ def main():
     ppr_boom = []
     ppr_bust = []
     ppr_starter = []
+    standard_adps = []
+    ppr_adps = []
     for index, row in k_df.iterrows():
         player_positions[index] = "K"
         if row["TEAM"] == "FA":
@@ -498,6 +578,16 @@ def main():
             ppr_bust.append(0)
             ppr_starter.append(0)
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     k_df["FULL_SOS"] = full_sos
     k_df["SEASON_SOS"] = season_sos
     k_df["PLAYOFF_SOS"] = playoff_sos
@@ -507,6 +597,8 @@ def main():
     k_df["PPR_BOOM"] = ppr_boom
     k_df["PPR_BUST"] = ppr_bust
     k_df["PPR_STARTER"] = ppr_starter
+    k_df["STANDARD_ADP"] = standard_adps
+    k_df["PPR_ADP"] = ppr_adps
     k_df.to_csv("final/ks.csv")
 
     # Now we'll do all
@@ -555,6 +647,8 @@ def main():
     season_sos = []
     full_sos = []
     depth = []
+    standard_adps = []
+    ppr_adps = []
 
     for index, row in all_df.iterrows():
         name = index
@@ -578,12 +672,24 @@ def main():
         else:
             depth.append(0)
 
+        if index in standard_adp:
+            standard_adps.append(standard_adp[index]["ADP"])
+        else:
+            standard_adps.append(500)
+
+        if index in ppr_adp:
+            ppr_adps.append(ppr_adp[index]["ADP"])
+        else:
+            ppr_adps.append(500)
+
     # all_df['POS'] = position
     all_df.insert(0, "POS", position)
     all_df["FULL_SOS"] = full_sos
     all_df["SEASON_SOS"] = season_sos
     all_df["PLAYOFF_SOS"] = playoff_sos
     all_df["DEPTH"] = depth
+    all_df["STANDARD_ADP"] = standard_adps
+    all_df["PPR_ADP"] = ppr_adps
     all_df.to_csv("final/all_positions.csv")
 
     # For the master sheet, we'll combine all of the dataframes, keeping any rows with unique indices and combining the rest
