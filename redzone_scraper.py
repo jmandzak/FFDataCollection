@@ -30,6 +30,9 @@ def scrape_receiving_redzone() -> (
         player.append(cells[6].text.strip()[:-1])
         player.append(cells[7].text)
         player.append(cells[12].text.strip()[:-1])
+        for val in player:
+            if val == "":
+                val = 0
         players.append(player)
 
     return players
@@ -59,6 +62,9 @@ def scrape_rushing_redzone() -> typing.List[typing.List[typing.Union[str, int, f
         player.append(cells[8].text.strip()[:-1])
         player.append(cells[9].text)
         player.append(cells[12].text.strip()[:-1])
+        for i, val in enumerate(player):
+            if val == "":
+                player[i] = 0
         players.append(player)
 
     return players
