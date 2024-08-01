@@ -13,7 +13,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-from constants import ADP_URLS, AVG_DF_COLUMNS, RANK_DF_COLUMNS, TOTAL_DF_COLUMNS, URLs
+from constants import AVG_DF_COLUMNS, RANK_DF_COLUMNS, TOTAL_DF_COLUMNS, ADP_URLs, URLs
 
 
 def setup_chrome_options() -> Options:
@@ -127,7 +127,7 @@ def download_stat_data(stat_type: str) -> None:
 
 def download_adp_data() -> None:
     IRRELEVANT_ADP = 200
-    for league_type, url in ADP_URLS.items():
+    for league_type, url in ADP_URLs.items():
         page = requests.get(url)
         soup = BeautifulSoup(page.content, "html.parser")
         table = soup.find("table")

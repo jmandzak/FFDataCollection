@@ -226,7 +226,30 @@ SOS_URLs = {
     "season": "https://fftoolbox.fulltimefantasy.com/football/strength_of_schedule.cfm?type=b",
 }
 
-ADP_URLS = {
+ADP_URLs = {
     "standard": "https://www.fantasypros.com/nfl/adp/overall.php",
     "ppr": "https://www.fantasypros.com/nfl/adp/ppr-overall.php",
 }
+
+REDZONE_URLs = {
+    "rushing": "https://www.pro-football-reference.com/years/2023/redzone-rushing.htm",
+    "receiving": "https://www.pro-football-reference.com/years/2023/redzone-receiving.htm",
+}
+
+REDZONE_RECEIVING_COLUMNS = [
+    "PLAYER NAME",
+    "20_YD_TGT",
+    "20_YD_%TGT",
+    "10_YD_TGT",
+    "10_YD_%TGT",
+]
+
+REDZONE_RUSHING_COLUMNS = [
+    "PLAYER NAME",
+    "20_YD_ATT",
+    "20_YD_%RUSH",
+    "10_YD_ATT",
+    "10_YD_%RUSH",
+    "5_YD_ATT",
+    "5_YD_%RUSH",
+]
