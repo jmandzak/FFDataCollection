@@ -1,6 +1,39 @@
 import pandas as pd
 
 
+def add_redzone(df, redzone_rushing, redzone_receiving) -> pd.DataFrame:
+    DEFAULT_REDZONE_RUSHING = {
+        "20_YD_ATT": 0,
+        "20_YD_%RUSH": 0,
+        "10_YD_ATT": 0,
+        "10_YD_%RUSH": 0,
+        "5_YD_ATT": 0,
+        "5_YD_%RUSH": 0,
+    }
+    DEFAULT_REDZONE_RECEIVING = {
+        "20_YD_TGT": 0,
+        "20_YD_%TGT": 0,
+        "10_YD_TGT": 0,
+        "10_YD_%TGT": 0,
+    }
+    players = df.to_dict("index")
+    for name in players.keys():
+        if name in redzone_rushing:
+            for stat_name, stat_value in redzone_rushing[name].items():
+                players[name][stat_name] = stat_value
+        else:
+            for stat_name, stat_value in DEFAULT_REDZONE_RUSHING.items():
+                players[name][stat_name] = stat_value
+        if name in redzone_receiving:
+            for stat_name, stat_value in redzone_receiving[name].items():
+                players[name][stat_name] = stat_value
+        else:
+            for stat_name, stat_value in DEFAULT_REDZONE_RECEIVING.items():
+                players[name][stat_name] = stat_value
+
+    return pd.DataFrame.from_dict(players, orient="index")
+
+
 def main():
     # grab strength of schedules
     full_df = pd.read_csv("sos_full.csv")
@@ -30,6 +63,14 @@ def main():
     ppr_adp_df.set_index("NAME", inplace=True)
     standard_adp = standard_adp_df.to_dict("index")
     ppr_adp = ppr_adp_df.to_dict("index")
+
+    # Grab redzone stats
+    redzone_rushing_df = pd.read_csv("rushing_redzone.csv")
+    redzone_rushing_df.set_index("PLAYER NAME", inplace=True)
+    redzone_receiving_df = pd.read_csv("receiving_redzone.csv")
+    redzone_receiving_df.set_index("PLAYER NAME", inplace=True)
+    redzone_rushing = redzone_rushing_df.to_dict("index")
+    redzone_receiving = redzone_receiving_df.to_dict("index")
 
     # this dict will be used later for adding positions to everyone
     player_positions = {}
@@ -129,6 +170,7 @@ def main():
     qb_df["DEPTH"] = depth
     qb_df["STANDARD_ADP"] = standard_adps
     qb_df["PPR_ADP"] = ppr_adps
+    qb_df = add_redzone(qb_df, redzone_rushing, redzone_receiving)
     qb_df.to_csv("final/qbs.csv")
 
     # Now on to RBs
@@ -240,6 +282,7 @@ def main():
     rb_df["DEPTH"] = depth
     rb_df["STANDARD_ADP"] = standard_adps
     rb_df["PPR_ADP"] = ppr_adps
+    rb_df = add_redzone(rb_df, redzone_rushing, redzone_receiving)
     rb_df.to_csv("final/rbs.csv")
 
     # Now WRs
@@ -351,6 +394,7 @@ def main():
     wr_df["DEPTH"] = depth
     wr_df["STANDARD_ADP"] = standard_adps
     wr_df["PPR_ADP"] = ppr_adps
+    wr_df = add_redzone(wr_df, redzone_rushing, redzone_receiving)
     wr_df.to_csv("final/wrs.csv")
 
     # Now TEs
@@ -462,6 +506,7 @@ def main():
     te_df["DEPTH"] = depth
     te_df["STANDARD_ADP"] = standard_adps
     te_df["PPR_ADP"] = ppr_adps
+    te_df = add_redzone(te_df, redzone_rushing, redzone_receiving)
     te_df.to_csv("final/tes.csv")
 
     # Now DEFs
