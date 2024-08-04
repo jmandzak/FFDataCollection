@@ -18,3 +18,6 @@ python3 redzone_scraper.py
 echo "Creating master data file..."
 cd stats24
 python3 ../master_creator.py
+
+cp final/master_sheet.csv ../../FantasyMVP/FantasyMVP/draft/data/master_sheet.csv
+cp final/* ../../FFWizard/src/Stats/
