@@ -102,6 +102,8 @@ def main():
     )
 
     qb_df.dropna(inplace=True, subset=["TEAM"])
+    # drop duplicates
+    qb_df = qb_df[~qb_df.index.duplicated(keep="first")]
 
     # assign strength of schedule and boom/bust/start
     playoff_sos = []
