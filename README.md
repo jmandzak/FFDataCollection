@@ -1,2 +1,2 @@
-# FFstats2021
-Contains all of the CSVs for the 2021 fantasy football season
+# FFDataCollection
+Contains multiple web scrapers and python scripts that work to collect and combine usefuly information for fantasy football
